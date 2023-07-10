@@ -17,25 +17,25 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Do all of your work inside the document.addEventListener  
 
   // Part 1
-  let main = document.getElementById('#main-title');
+  let mainTitle = document.getElementById('#main-title');
 
   // Part 2
   document.body.style.backgroundColor = 'red';
 
   // Part 3
   let domFavorite = document.getElementById('favorite-things');
-  domFavorite.removeChild(domFavorite.lastChild);
+  domFavorite.removeChild(domFavorite.lastElementChild);
 
   // Part 4
-  let changeSpecialTitle = document.getElementsByClassName('.special-title');
-  for(let i = 0; i<changeSpecialTitle.length; i++){
-    changeSpecialTitle[i].style.fontSize = '2rem'; 
+  let changeSpecialTitle = document.querySelectorAll('.special-title');
+  for(let i = 0; i < changeSpecialTitle.length; i++){
+    changeSpecialTitle[i].style.fontSize = '2rem';
   }
 
   // Part 5
-  let pastRaces = document.getElementById('#past-races');
-  let removeChicago = pastRaces.getElementsByTagName('li')[3];
-  pastRaces.removeChild(removeChicago);
+  let pastRaces = document.getElementById('past-races');
+  pastRaces.removeChild(pastRaces.children[3]);
+  
 
   // Part 6
   let newRace = document.createElement('li');
@@ -43,14 +43,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
   pastRaces.appendChild(newRace);
 
   // Part 7
-  let blogPost = document.createElement('div').createElement('class = .blog-post');
-  let denverH2 = blogPost.createElement('h2');
-  let reasonP = blogPost.createElement('p');
-  denverH2.innerHTML = 'DENVER';
-  reasonP.innerHTML = 'I WENT VROOM VROOM!'
+  let blogPost = document.createElement('div');
+  blogPost.classList.add('blog-post');
 
-  blogPost.appendChild(denverH2);
+  let denver2 = document.createElement('h2');
+  denver2.style.color ='white';
+  denver2.textContent = 'Denver';
+
+  let reasonP = document.createElement('p');
+  reasonP.textContent = 'I RAN A RED LIGHT!';
+
+  blogPost.appendChild(denver2);
   blogPost.appendChild(reasonP);
+
+  const main = document.querySelector('.main');
+  main.appendChild(blogPost);
 
 
   // Part 8
@@ -60,14 +67,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   // Part 9
   let selectBlogPost = document.querySelectorAll('.blog-post');
-  for(let i = 0; i < selectBlogPost.length; i++){
-    selectBlogPost.addEventListener('mouseout', (event) =>{
-      this.classList.toggle[i]('.purple');
-    })
-    selectBlogPost.addEventListener('mouseenter',(event)=>{
-      this.classList.toggle[i]('.red');
-    })
- }
+  selectBlogPost.forEach(selectBlogPost => {
+    selectBlogPost.addEventListener('mouseout', () =>{
+      selectBlogPost.classList.toggle('purple');
+    });
 
-
-});
+    selectBlogPost.addEventListener('mouseenter', () =>{
+      selectBlogPost.classList.toggle('red');
+    });
+  });
