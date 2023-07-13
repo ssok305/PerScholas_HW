@@ -76,3 +76,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       selectBlogPost.classList.toggle('red');
     });
   });
+
+ 
+
+
+});
